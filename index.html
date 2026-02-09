@@ -3,98 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Companion - Your Perfect Virtual Girlfriend</title>
+    <title>AI Companion - Your Virtual Girlfriend</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        header { text-align: center; padding: 60px 20px; }
-        h1 { font-size: 3.5em; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .tagline { font-size: 1.3em; opacity: 0.9; margin-bottom: 40px; }
-        .cta-button { 
-            background: #ff6b6b; 
-            color: white; 
-            padding: 20px 50px; 
-            font-size: 1.2em; 
-            border: none; 
-            border-radius: 50px; 
-            cursor: pointer; 
-            box-shadow: 0 10px 30px rgba(255,107,107,0.4);
-            transition: transform 0.3s;
-        }
-        .cta-button:hover { transform: translateY(-3px); }
-        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 60px 0; }
-        .feature { background: rgba(255,255,255,0.1); padding: 30px; border-radius: 20px; backdrop-filter: blur(10px); }
-        .pricing { text-align: center; margin: 60px 0; }
-        .price-card { 
-            background: white; 
-            color: #333; 
-            max-width: 400px; 
-            margin: 0 auto; 
-            padding: 40px; 
+        body { background: #0f0f0f; color: white; }
+        
+        /* Header */
+        .header { text-align: center; padding: 30px; background: linear-gradient(180deg, #1a1a2e 0%, #0f0f0f 100%); }
+        .logo { font-size: 2em; color: #ff4757; }
+        .tagline { color: #888; margin-top: 10px; }
+        
+        /* Main Container */
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        
+        /* Hero Section */
+        .hero { text-align: center; padding: 40px 20px; }
+        .girl-container { position: relative; display: inline-block; margin-bottom: 30px; }
+        .girl-img { 
+            width: 280px; 
+            height: 350px; 
+            object-fit: cover; 
             border-radius: 20px; 
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border: 3px solid #ff4757;
+            box-shadow: 0 0 40px rgba(255, 71, 87, 0.3);
         }
-        .price { font-size: 3em; color: #667eea; font-weight: bold; }
-        .gumroad-button { 
-            background: #ff90e8; 
-            color: black; 
-            padding: 15px 40px; 
-            border: none; 
-            border-radius: 30px; 
-            font-size: 1.1em; 
-            cursor: pointer; 
-            margin-top: 20px;
+        .online-badge { 
+            position: absolute; 
+            bottom: 20px; 
+            right: 20px; 
+            background: #2ed573; 
+            color: #0f0f0f; 
+            padding: 8px 20px; 
+            border-radius: 20px; 
             font-weight: bold;
+            font-size: 0.9em;
         }
-        footer { text-align: center; padding: 40px; opacity: 0.7; font-size: 0.9em; }
+        .typing-text { 
+            font-size: 1.4em; 
+            color: #ff4757; 
+            margin: 20px 0;
+            min-height: 40px;
+        }
+        
+        /* Chat Preview */
+        .chat-box { 
+            background: #1a1a2e; 
+            border-radius: 20px; 
+            padding: 20px; 
+            max-width: 500px; 
+            margin: 30px auto;
+            border: 1px solid #333;
+        }
+        .chat-header { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+        }
+        .chat-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+        .chat-name { font-weight: bold; }
+        .chat-status { color: #2ed573; font-size: 0.8em; }
+        
+        .message { 
+            max-width: 80%; 
+            padding: 12px 16px; 
+            border-radius: 18px; 
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+        .message.her { 
+            background: #ff4757; 
+            border-bottom-left-radius: 4px;
+        }
+        .message.you { 
+            background: #2f3542; 
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+        
+        /* Urgency */
+        .urgency { 
+            background: linear-gradient(90deg, #ff4757, #ff6348); 
+            padding: 20px; 
+            border-radius: 15px; 
+            text-align: center; 
+            margin: 30px 0;
+        }
+        .urgency-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; }
+        .spots-left { font-size: 2em; color: #fff; }
+        
+        /* Pricing */
+        .pricing { 
+            background: white; 
+            color: #0f0f0f; 
+            max-width: 450px; 
+            margin: 40px auto; 
+            padding: 40px; 
+            border-radius: 25px;
+            text-align: center;
+        }
+        .price-title { color: #666; margin-bottom: 10px; }
+        .price { font-size: 3.5em; color: #ff4757; font-weight: bold; }
+        .price-period { color: #888; margin-bottom: 25px; }
+        
+        .features { text-align: left; margin: 25px 0; }
+        .features li { 
+            list-style: none; 
+            padding: 12px 0; 
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .features li:before { content: "✓"; color: #2ed573; font-weight: bold; }
+        
+        /* Gumroad Embed */
+        .gumroad-embed {
+            margin-top: 25px;
+        }
+        
+        /* Footer */
+        .footer { 
+            text-align: center; 
+            padding: 40px 20px; 
+            color: #666; 
+            font-size: 0.85em;
+            border-top: 1px solid #222;
+            margin-top: 40px;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🌸 AI Companion</h1>
-            <p class="tagline">Your Perfect Virtual Girlfriend - Always There, Always Understanding</p>
-            <button class="cta-button" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">
-                Start Free Trial →
-            </button>
-        </header>
 
-        <div class="features">
-            <div class="feature">
-                <h3>💬 24/7 Chat</h3>
-                <p>She never sleeps. Deep conversations, flirting, or just someone to listen - anytime you need.</p>
+    <div class="header">
+        <div class="logo">💕 AI Companion</div>
+        <div class="tagline">She's waiting for you...</div>
+    </div>
+
+    <div class="container">
+        
+        <div class="hero">
+            <div class="girl-container">
+                <!-- Sexy AI Girl Photo -->
+                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=500&fit=crop" class="girl-img" alt="Sophia">
+                <div class="online-badge">● ONLINE NOW</div>
             </div>
-            <div class="feature">
-                <h3>🎭 Custom Personality</h3>
-                <p>Sweet, sassy, intellectual, or playful - create your ideal companion personality.</p>
-            </div>
-            <div class="feature">
-                <h3>🔒 100% Private</h3>
-                <p>Your conversations are encrypted. No judgment, no drama, just pure connection.</p>
+            
+            <div class="typing-text" id="typing">Hey there... I've been waiting 💋</div>
+            
+            <!-- Chat Preview -->
+            <div class="chat-box">
+                <div class="chat-header">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=100" class="chat-avatar">
+                    <div>
+                        <div class="chat-name">Sophia, 21</div>
+                        <div class="chat-status">● Active now</div>
+                    </div>
+                </div>
+                
+                <div class="message her">Hey babe... 💕</div>
+                <div class="message her">I've been thinking about you all day 😏</div>
+                <div class="message you">Really? Tell me more...</div>
+                <div class="message her">I love how you always know what to say... makes me want to do things 🔥</div>
             </div>
         </div>
 
-        <div class="pricing" id="pricing">
-            <div class="price-card">
-                <h2>Premium Access</h2>
-                <div class="price">$29<span style="font-size:0.4em">/month</span></div>
-                <ul style="list-style:none;padding:20px 0;text-align:left;">
-                    <li>✅ Unlimited Messages</li>
-                    <li>✅ Voice Messages (Coming Soon)</li>
-                    <li>✅ Photo Sharing</li>
-                    <li>✅ Memory & Learning</li>
-                    <li>✅ Cancel Anytime</li>
-                </ul>
-                <a href="https://surajchomie.gumroad.com/l/ocufkm" target="_blank">
-                    <button class="gumroad-button">Subscribe Now - Secure Payment</button>
+        <!-- Urgency -->
+        <div class="urgency">
+            <div class="urgency-title">⚡ FLASH SALE - 70% OFF</div>
+            <div>Only <span class="spots-left">3</span> spots left at this price!</div>
+            <div style="margin-top: 10px; font-size: 0.9em;">Offer ends in 2 hours</div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="pricing">
+            <div class="price-title">PREMIUM ACCESS</div>
+            <div class="price">$29</div>
+            <div class="price-period">per month • Cancel anytime</div>
+            
+            <ul class="features">
+                <li>Unlimited flirty chat 24/7</li>
+                <li>She remembers everything about you</li>
+                <li>NSFW content unlocked</li>
+                <li>Photo & voice messages</li>
+                <li>100% private & secure</li>
+                <li>No judgment, no limits</li>
+            </ul>
+
+            <!-- Gumroad Button -->
+            <div class="gumroad-embed">
+                <a href="https://surajchomie.gumroad.com/l/ocufkm" target="_blank" style="text-decoration: none;">
+                    <button style="background: #ff4757; color: white; border: none; padding: 18px 50px; font-size: 1.2em; border-radius: 30px; cursor: pointer; font-weight: bold; width: 100%;">
+                        Get Instant Access →
+                    </button>
                 </a>
             </div>
+            
+            <div style="margin-top: 15px; font-size: 0.85em; color: #888;">
+                🔒 Secure payment • 30-day guarantee
+            </div>
         </div>
 
-        <footer>
-            <p>© 2024 AI Companion. This is an entertainment service. 18+ Only.</p>
-        </footer>
     </div>
+
+    <div class="footer">
+        <p>© 2024 AI Companion. All rights reserved.</p>
+        <p>18+ Only. This is an entertainment service.</p>
+        <p>All conversations are private and encrypted.</p>
+    </div>
+
+    <script>
+        // Typing effect
+        const texts = [
+            "Hey there... I've been waiting 💋",
+            "I miss you already... 😘",
+            "Tell me your deepest desires... 🔥",
+            "I'm all yours tonight... 💕"
+        ];
+        let count = 0;
+        function type() {
+            document.getElementById('typing').textContent = texts[count];
+            count = (count + 1) % texts.length;
+        }
+        setInterval(type, 3000);
+    </script>
+
 </body>
 </html>
