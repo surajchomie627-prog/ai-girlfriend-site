@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Resume Builder - Get Hired Faster</title>
+
+<meta name="description" content="Create a professional resume in seconds using AI. Trusted by job seekers.">
+
+<!-- ADS -->
+<script src="https://pl28916939.profitablecpmratenetwork.com/54/1f/1b/541f1b1d8d4314ab65f31e37c58525d8.js"></script>
+
+<style>
+body {
+    margin:0;
+    font-family:sans-serif;
+    background: radial-gradient(circle at top, #140a25, #02010a);
+    color:white;
+}
+
+.nav {
+    padding:20px 40px;
+    font-weight:bold;
+    color:#a855f7;
+}
+
+.hero {
+    text-align:center;
+    padding:80px 20px;
+}
+
+.hero h1 {
+    font-size:3.5em;
+    background:linear-gradient(90deg,#a855f7,#6366f1);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.card {
+    max-width:700px;
+    margin:30px auto;
+    padding:30px;
+    border-radius:16px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(20px);
+}
+
+input, textarea {
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    background:#020617;
+    color:white;
+}
+
+.btn {
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#7c3aed,#4f46e5);
+    color:white;
+    cursor:pointer;
+}
+
+#result {
+    margin-top:15px;
+    white-space:pre-wrap;
+}
+
+.cta {
+    text-align:center;
+    margin:50px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="nav">🚀 AI Resume Pro</div>
+
+<section class="hero">
+    <h1>Create Resume in Seconds</h1>
+    <p>AI tool used by job seekers worldwide</p>
+</section>
+
+<div class="card">
+    <h2>Generate Resume</h2>
+
+    <input id="name" placeholder="Your Name">
+    <input id="skills" placeholder="Your Skills">
+    <textarea id="exp" placeholder="Your Experience"></textarea>
+
+    <button class="btn" onclick="generateResume()">Generate</button>
+
+    <div id="result"></div>
+</div>
+
+<div class="card">
+    <h2>Download Resume</h2>
+    <input placeholder="Enter your email">
+    <button class="btn">Download PDF</button>
+</div>
+
+<div class="cta">
+    <a href="https://systeme.io/?sa=sa0211923774b4d5ef21452642bc55f248793d7ea9" target="_blank" class="btn">
+        💰 Start Online Income →
+    </a>
+</div>
+
+<script>
+async function generateResume() {
+
+    let name = document.getElementById("name").value;
+    let skills = document.getElementById("skills").value;
+    let exp = document.getElementById("exp").value;
+
+    document.getElementById("result").innerText = "Generating...";
+
+    // 🔥 YAHAN API LAGANI HAI
+    // 👇 Replace YOUR_API_KEY
+
+    let response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer YOUR_API_KEY"
+        },
+        body: JSON.stringify({
+            model: "gpt-4o-mini",
+            messages: [{
+                role: "user",
+                content: `Create a professional resume:
+
+Name: ${name}
+Skills: ${skills}
+Experience: ${exp}`
+            }]
+        })
+    });
+
+    let data = await response.json();
+
+    let output = data.choices?.[0]?.message?.content || "Error";
+
+    document.getElementById("result").innerText = output;
+}
+</script>
+
+</body>
+</html>
